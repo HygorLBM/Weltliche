@@ -119,6 +119,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -140,6 +141,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -161,6 +163,7 @@
                 android:layout_marginRight="10dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
         </LinearLayout>
@@ -190,6 +193,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -211,6 +215,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -232,6 +237,7 @@
                 android:layout_marginRight="10dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
         </LinearLayout>
@@ -261,6 +267,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -282,6 +289,7 @@
                 android:layout_marginRight="15dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
 
@@ -303,6 +311,7 @@
                 android:layout_marginRight="10dp"
                 android:numStars="5"
                 android:rating="1"
+                android:stepSize="1"
                 tools:layout_editor_absoluteX="8dp"
                 tools:layout_editor_absoluteY="8dp" />
         </LinearLayout>

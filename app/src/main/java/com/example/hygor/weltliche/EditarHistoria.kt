@@ -112,6 +112,9 @@ class EditarHistoria : AppCompatActivity() {
 
         salvaDetalhes.setOnClickListener{
             //Adicionando a conta ao banco de dados com atuais 0 personagens
+            val  new_caracteristicas = Personagem(idadePersonagem.text.toString().toInt(), sexoPersonagem.selectedItem.toString(), nacionalidade.text.toString(),
+                                                     vicio.selectedItem.toString().replace("Vício: ", ""), virtude.selectedItem.toString().replace("Virtude: ", ""),
+                                                     formado.selectedItem.toString(), casa.selectedItem.toString(),  ocupacao.selectedItem.toString(), historia.text.toString())
             val caracteristicas = HashMap<String, Any>()
             caracteristicas.put("idade", idadePersonagem.text.toString().toInt())
             caracteristicas.put("sexo", sexoPersonagem.selectedItem.toString())
@@ -123,7 +126,7 @@ class EditarHistoria : AppCompatActivity() {
             caracteristicas.put("ocupacao", ocupacao.selectedItem.toString())
             caracteristicas.put("história",historia.text.toString())
             db.collection("characters").document(nomePersonagem.text.toString())
-                    .set(caracteristicas, SetOptions.merge())
+                    .set(new_caracteristicas, SetOptions.merge())
                     .addOnSuccessListener {
                         Toast.makeText(this@EditarHistoria, "Características salvas", Toast.LENGTH_SHORT).show()
                         val gotoCriarPersonagemPersonagem = Intent(this, CriarPersonagem::class.java)

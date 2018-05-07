@@ -125,15 +125,16 @@ class CriarPersonagem : AppCompatActivity() {
                                 profileURL = taskSnapshot.downloadUrl.toString()
                                 val user = mAuth!!.currentUser
                                 //Adicionando o personagem ao banco de dados
-                                val new_char = HashMap<String, Any>()
+                                val new_character = Personagem(user!!.uid, UUID.randomUUID().toString(),charName, charSkill, profileURL, false )
+                               /* val new_char = HashMap<String, Any>()
                                 new_char.put("uid", user!!.uid)
                                 new_char.put("cid", UUID.randomUUID().toString())
                                 new_char.put("nome", charName)
                                 new_char.put("skill", charSkill)
                                 new_char.put("profilePic", profileURL)
-                                new_char.put("npc", false)
+                                new_char.put("npc", false)*/
                                 db.collection("characters").document(charName)
-                                        .set(new_char)
+                                        .set(new_character)
                                         .addOnSuccessListener {
                                             Toast.makeText(this@CriarPersonagem, " Personagem criado", Toast.LENGTH_SHORT).show()
                                             salvaPersonagem.visibility = View.INVISIBLE
