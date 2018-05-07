@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Weltliche</string>
+
+    <string-array name="sexo">
+        <item>Sexo?</item>
+        <item>Masculino</item>
+        <item>Feminino</item>
+    </string-array>
+
+    <string-array name="vicio">
+        <item>Vício: </item>
+        <item>Vício: Avareza</item>
+        <item>Vício: Gula</item>
+        <item>Vício: Inveja</item>
+        <item>Vício: Ira</item>
+        <item>Vício: Luxúria</item>
+        <item>Vício: Orgulho</item>
+        <item>Vício: Preguiça</item>
+    </string-array>
+
+    <string-array name="virtude">
+        <item>Virtude: </item>
+        <item>Virtude: Caridade</item>
+        <item>Virtude: Esperança</item>
+        <item>Virtude: Fé</item>
+        <item>Virtude: Fortaleza</item>
+        <item>Virtude: Justiça</item>
+        <item>Virtude: Prudência</item>
+        <item>Virtude: Temperança</item>
+    </string-array>
+
+    <string-array name="ocupacao">
+        <item>Ocupação?</item>
+        <item>Estudante</item>
+        <item>Professor</item>
+        <item>Ministerial</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="formado">
+        <item>Formado?</item>
+        <item>Formado</item>
+        <item>Não formado</item>
+    </string-array>
+
+    <string-array name="casas">
+        <item>Casa (WAM)</item>
+        <item>Feuer</item>
+        <item>Wasser</item>
+        <item>Luft</item>
+        <item>Land</item>
+        <item>ASM</item>
+        <item>Hogwarts</item>
+        <item>Outro</item>
+    </string-array>
+</resources>
