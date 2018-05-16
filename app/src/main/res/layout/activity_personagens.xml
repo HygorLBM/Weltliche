@@ -7,7 +7,579 @@
     android:background="@drawable/wam_trying06"
     tools:context="com.example.hygor.weltliche.Personagens">
 
+    <LinearLayout
+        android:id="@+id/Card"
+        android:backgroundTint="#dadada"
+        android:visibility="gone"
+        android:layout_width="316dp"
+        android:layout_height="132dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/inner_border"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25">
+
+        <LinearLayout
+            android:id="@+id/MainInfo"
+            android:layout_width="104dp"
+            android:layout_height="132dp"
+            android:background="@drawable/inner_border"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/Char1Avatar"
+                android:src="@drawable/character_placeholder"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="1dp"
+                />
+
+            <TextView
+                android:id="@+id/Char1Nome"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="#000000"
+                android:text="Character_Name"
+                />
+
+            <TextView
+                android:id="@+id/Char1EXP"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="#000000"
+                android:text="EXP: ???"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/SecAndStats"
+            android:layout_width="212dp"
+            android:layout_height="132dp"
+            android:background="@drawable/inner_border"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25">
+
+            <LinearLayout
+                android:id="@+id/SecondaryInfo"
+                android:layout_width="212dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/Char1Skill"
+                    android:layout_width="106dp"
+                    android:layout_height="14dp"
+                    android:layout_marginLeft="6dp"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Character_Skill"
+                    />
+
+                <TextView
+                    android:id="@+id/Char1Idade"
+                    android:layout_width="70dp"
+                    android:layout_height="14dp"
+                    android:textSize="10dp"
+                    android:text="X anos"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/Char1Sexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:src="@drawable/undefined"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Stats"
+                android:layout_width="150dp"
+                android:orientation="vertical"
+                android:layout_height="75dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="31dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/str"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char1FOR"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/intt"/>
+                    <TextView
+                        android:id="@+id/Char1INT"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/prs"/>
+                    <TextView
+                        android:id="@+id/Char1PRE"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/dex"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char1DEX"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/rac"/>
+                    <TextView
+                        android:id="@+id/Char1RAC"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/man"/>
+                    <TextView
+                        android:id="@+id/Char1MAN"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/sta"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char1VIG"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/per"/>
+                    <TextView
+                        android:id="@+id/Char1PER"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/aut"/>
+                    <TextView
+                        android:id="@+id/Char1AUT"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="152dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Char1Formado"
+                    android:layout_width="96dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="14dp"
+                    android:gravity="end"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Formado?"/>
+
+                <TextView
+                    android:id="@+id/Char1Ocupacao"
+                    android:layout_width="56dp"
+                    android:layout_height="14dp"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Ocupação?"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Card2"
+        android:backgroundTint="#dadada"
+        android:visibility="gone"
+        android:layout_width="316dp"
+        android:layout_height="132dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/inner_border"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75">
+
+        <LinearLayout
+            android:id="@+id/MainInfo2"
+            android:layout_width="104dp"
+            android:layout_height="132dp"
+            android:background="@drawable/inner_border"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/Char2Avatar"
+                android:src="@drawable/character_placeholder"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="1dp"
+                />
+
+            <TextView
+                android:id="@+id/Char2Nome"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="#000000"
+                android:text="Character_Name"
+                />
+
+            <TextView
+                android:id="@+id/Char2EXP"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:textColor="#000000"
+                android:text="EXP: ???"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/SecAndStats2"
+            android:layout_width="212dp"
+            android:layout_height="132dp"
+            android:background="@drawable/inner_border"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25">
+
+            <LinearLayout
+                android:id="@+id/SecondaryInfo2"
+                android:layout_width="212dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:id="@+id/Char2Skill"
+                    android:layout_width="110dp"
+                    android:layout_height="14dp"
+                    android:layout_marginLeft="2dp"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Character_Skill"
+                    />
+
+                <TextView
+                    android:id="@+id/Char2Idade"
+                    android:layout_width="70dp"
+                    android:layout_height="14dp"
+                    android:textSize="10dp"
+                    android:text="X anos"
+                    android:textColor="#000000"
+                    />
+
+                <ImageView
+                    android:id="@+id/Char2Sexo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:src="@drawable/undefined"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Stats2"
+                android:layout_width="150dp"
+                android:orientation="vertical"
+                android:layout_height="75dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="31dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/str"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char2FOR"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/intt"/>
+                    <TextView
+                        android:id="@+id/Char2INT"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/prs"/>
+                    <TextView
+                        android:id="@+id/Char2PRE"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/dex"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char2DEX"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/rac"/>
+                    <TextView
+                        android:id="@+id/Char2RAC"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/man"/>
+                    <TextView
+                        android:id="@+id/Char2MAN"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/sta"
+                        android:tint="#000000"/>
+                    <TextView
+                        android:id="@+id/Char2VIG"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/per"/>
+                    <TextView
+                        android:id="@+id/Char2PER"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/aut"/>
+                    <TextView
+                        android:id="@+id/Char2AUT"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="0"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="152dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Char2Formado"
+                    android:layout_width="96dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="14dp"
+                    android:gravity="end"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Formado?"/>
+
+                <TextView
+                    android:id="@+id/Char2Ocupacao"
+                    android:layout_width="56dp"
+                    android:layout_height="14dp"
+                    android:textSize="10dp"
+                    android:textColor="#000000"
+                    android:text="Ocupação?"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <ImageView
+        android:id="@+id/CriarPersonagem"
+        android:visibility="gone"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_marginBottom="8dp"
@@ -18,10 +590,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.71"
         app:srcCompat="@drawable/dean_try1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/LimiteChars"
+        android:visibility="gone"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -37,6 +611,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.907" />
+
+    <TextView
+        android:id="@+id/fim"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#DD0000"
+        android:text="O jogo começa em breve!"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Card2" />
 
 
 </android.support.constraint.ConstraintLayout>

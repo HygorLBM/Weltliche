@@ -96,13 +96,13 @@ class CriarPersonagem : AppCompatActivity() {
 
         //Tratando criação do personagem
         salvaPersonagem.setOnClickListener{
-            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_LONG).show()
+            Toast.makeText(getApplicationContext(), "Salvando... aguarde!", Toast.LENGTH_LONG).show()
             val charName = wam_characterName.text.toString()
             val charSkill = wam_characterSkill.text.toString()
 
 
             if(!ready){
-                Toast.makeText(this@CriarPersonagem, " Atenção: preencha nome, skill e imagem", Toast.LENGTH_SHORT).show()
+                Toast.makeText(getApplicationContext(), " Atenção: preencha nome, skill e imagem", Toast.LENGTH_SHORT).show()
             }
             else{
 
@@ -112,13 +112,13 @@ class CriarPersonagem : AppCompatActivity() {
 
                 characterRef.update("npc", false)
                         .addOnSuccessListener {
-                            Toast.makeText(this@CriarPersonagem, "Esse personagem já existe!", Toast.LENGTH_SHORT).show() }
+                            Toast.makeText(getApplicationContext(), "Esse personagem já existe!", Toast.LENGTH_SHORT).show() }
 
 
                         //Personagem não existe, então upadte não foi possível
                         .addOnFailureListener {
 
-                            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(getApplicationContext(), "Salvando... aguarde!", Toast.LENGTH_LONG).show()
                             // Criando referencia para a foto do personagem no Storage
                             val storageRef = storage.reference
                             val profilepicRef = storageRef.child("characters/" + charName + "/profile")
@@ -130,7 +130,7 @@ class CriarPersonagem : AppCompatActivity() {
 
                             val uploadTask = profilepicRef.putBytes(data)
                             uploadTask.addOnFailureListener(OnFailureListener {
-                                Toast.makeText(this@CriarPersonagem, " Falha no upload da imagem! ", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(getApplicationContext(), " Falha no upload da imagem! ", Toast.LENGTH_SHORT).show()
                             }).addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
                                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                                 profileURL = taskSnapshot.downloadUrl.toString()
@@ -140,7 +140,7 @@ class CriarPersonagem : AppCompatActivity() {
                                 db.collection("characters").document(charName)
                                         .set(newCharacter)
                                         .addOnSuccessListener {
-                                            Toast.makeText(this@CriarPersonagem, " Personagem criado", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(getApplicationContext(), " Personagem criado", Toast.LENGTH_SHORT).show()
                                             wam_characterName.isEnabled = false
                                             wam_characterSkill.isEnabled = false
                                             wam_characterPic.isClickable = false
@@ -157,12 +157,11 @@ class CriarPersonagem : AppCompatActivity() {
                                                 var chars = ab.getDouble("characters").toInt()
                                                 chars++;
                                                 userRef.update("characters", chars)
-                                                Toast.makeText(this@CriarPersonagem, "Characters: " + chars.toString(), Toast.LENGTH_SHORT).show()
                                             }
                                         }
 
                                         .addOnFailureListener { e -> Log.w("DatabaseAdd", "Error writing document", e)
-                                            Toast.makeText(this@CriarPersonagem, " Erro criando personagem", Toast.LENGTH_SHORT).show()}
+                                            Toast.makeText(getApplicationContext(), " Erro criando personagem", Toast.LENGTH_SHORT).show()}
                             })
                         }
             }

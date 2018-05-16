@@ -77,7 +77,7 @@ class CriarUsuario : AppCompatActivity() {
                         if (task2.isSuccessful) {
                             val user = mAuth!!.currentUser
                             Log.d("Sucesso!", "sendEmailVerification:success")
-                            Toast.makeText(this@CriarUsuario, "E-mail de verificação enviado para: " + user!!.email, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getApplicationContext(), "E-mail de verificação enviado para: " + user!!.email, Toast.LENGTH_SHORT).show()
                             val request = UserProfileChangeRequest.Builder().setDisplayName(username).build()
                             user!!.updateProfile(request)
 
@@ -97,13 +97,13 @@ class CriarUsuario : AppCompatActivity() {
                             startActivity(intent)
                         } else {
                             Log.d("Falha!", "sendEmailVerification:failed")
-                            Toast.makeText(this@CriarUsuario, "Falha no envio do e-mail de verificação.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getApplicationContext(), "Falha no envio do e-mail de verificação.", Toast.LENGTH_SHORT).show()
                         }
                         // [END_EXCLUDE]
                     }
                 } else {
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(this, "E-mail/Password inválido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(getApplicationContext(), "E-mail/Password inválido", Toast.LENGTH_SHORT).show()
                 }
             })
         }

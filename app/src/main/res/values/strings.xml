@@ -8,25 +8,25 @@
     </string-array>
 
     <string-array name="vicio">
-        <item>Vício: </item>
-        <item>Vício: Avareza</item>
-        <item>Vício: Gula</item>
-        <item>Vício: Inveja</item>
-        <item>Vício: Ira</item>
-        <item>Vício: Luxúria</item>
-        <item>Vício: Orgulho</item>
-        <item>Vício: Preguiça</item>
+        <item>Vício?</item>
+        <item>Avareza</item>
+        <item>Gula</item>
+        <item>Inveja</item>
+        <item>Ira</item>
+        <item>Luxúria</item>
+        <item>Orgulho</item>
+        <item>Preguiça</item>
     </string-array>
 
     <string-array name="virtude">
-        <item>Virtude: </item>
-        <item>Virtude: Caridade</item>
-        <item>Virtude: Esperança</item>
-        <item>Virtude: Fé</item>
-        <item>Virtude: Fortaleza</item>
-        <item>Virtude: Justiça</item>
-        <item>Virtude: Prudência</item>
-        <item>Virtude: Temperança</item>
+        <item>Virtude?</item>
+        <item>Caridade</item>
+        <item>Esperança</item>
+        <item>Fé</item>
+        <item>Fortaleza</item>
+        <item>Justiça</item>
+        <item>Prudência</item>
+        <item>Temperança</item>
     </string-array>
 
     <string-array name="ocupacao">
@@ -34,13 +34,12 @@
         <item>Estudante</item>
         <item>Professor</item>
         <item>Ministerial</item>
-        <item>Outro</item>
     </string-array>
 
     <string-array name="formado">
         <item>Formado?</item>
         <item>Formado</item>
-        <item>Não formado</item>
+        <item>Não Formado</item>
     </string-array>
 
     <string-array name="casas">
@@ -51,6 +50,7 @@
         <item>Land</item>
         <item>ASM</item>
         <item>Hogwarts</item>
+        <item>EAM</item>
         <item>Outro</item>
     </string-array>
 </resources>

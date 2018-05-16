@@ -98,7 +98,7 @@ class Login : AppCompatActivity() {
     private fun LoginSucesful(user: FirebaseUser) {
 
         Toast.makeText(this@Login, "Bem -vindo, " + user.displayName, Toast.LENGTH_LONG).show()
-        val goToPersonagens = Intent(this@Login, CriarPersonagem::class.java)
+        val goToPersonagens = Intent(this@Login, Personagens::class.java)
         startActivity(goToPersonagens)
     }
 

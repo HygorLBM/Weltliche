@@ -45,7 +45,22 @@ public class Personagem implements Serializable {
         this.skill = skill;
         this.profilePic = profilePic;
         this.npc = npc;
-
+        this.idade = 0;
+        this.sexo = "";
+        this.nacionalidade = "";
+        this.vicio = "";
+        this.virtude = "";
+        this.formado = "";
+        this.casa = "";
+        this.ocupacao = "";
+        this.historia = "";
+        destreza = 0;
+        vigor = 0;
+        inteligencia = 0;
+        raciocinio = 0;
+        perseveranca = 0;
+        manipulacao = 0;
+        autocontrole = 0;
     }
 
     public void setHistoria(int idade, String sexo, String nacionalidade, String vicio, String virtude, String formado,
@@ -60,7 +75,6 @@ public class Personagem implements Serializable {
         this.casa = casa;
         this.ocupacao = ocupacao;
         this.historia = historia;
-
     }
 
     public void setAtributos(int forca, int destreza, int vigor, int inteligencia, int raciocinio, int perseveranca,

@@ -14,6 +14,7 @@ import com.mvc.imagepicker.ImagePicker
 import android.widget.RatingBar
 import android.widget.RatingBar.OnRatingBarChangeListener
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
@@ -36,6 +37,7 @@ class EditarAtributos : AppCompatActivity() {
     lateinit var character: Personagem
     lateinit var salvaPersonagem: Button
     var ready : Boolean = false
+    lateinit var imageOp: RequestOptions
 
 
 
@@ -47,6 +49,9 @@ class EditarAtributos : AppCompatActivity() {
 
         //Esconder Action-bar
         getSupportActionBar()!!.hide()
+
+        //Opcoes de imagem
+        imageOp = RequestOptions().centerCrop()
 
         //Recebendo informações de personagem da tela anterior
         val ProfileInfo = getIntent()
@@ -86,7 +91,7 @@ class EditarAtributos : AppCompatActivity() {
         //Setando o texto dos elementos:
         wam_characterName.setText(characterName)
         wam_characterSkill.setText(characterSkill)
-        Glide.with(this).load(characterPic).into(wam_characterPic);
+        Glide.with(this).load(characterPic).apply(imageOp).into(wam_characterPic);
 
 
         //Meétodos para mudança de status: Verifica se >= 1 e se a configuração já está pronta
@@ -166,7 +171,7 @@ class EditarAtributos : AppCompatActivity() {
         salvaPersonagem.setOnClickListener{
 
             if (!ready){
-                Toast.makeText(this@EditarAtributos, "Atributos inválidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(getApplicationContext(), "Atributos inválidos", Toast.LENGTH_SHORT).show()
             }
             else{
                 character.setAtributos(wam_characterFOR.rating.toInt(), wam_characterDES.rating.toInt(), wam_characterVIG.rating.toInt(),
@@ -176,8 +181,8 @@ class EditarAtributos : AppCompatActivity() {
                 db.collection("characters").document(character.getNome())
                         .set(character, SetOptions.merge())
                         .addOnSuccessListener {
-                            Toast.makeText(this@EditarAtributos, "Atributos salvos", Toast.LENGTH_SHORT).show()
-                            if(character.sexo == null) {
+                            Toast.makeText(getApplicationContext(), "Personagem atualizado!", Toast.LENGTH_SHORT).show()
+                            if(character.sexo == "") {
                                 val gotoCriarPersonagemPersonagem = Intent(this, Personagens::class.java)
                                 gotoCriarPersonagemPersonagem.putExtra("CRIAR_TYPE", 2)
                                 startActivity(gotoCriarPersonagemPersonagem)
