@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 
 class EditarHistoria : AppCompatActivity() {
 
+    lateinit var character: Personagem
     lateinit var idadePersonagem: EditText
     lateinit var sexoPersonagem: Spinner
     lateinit var vicio: Spinner
@@ -35,8 +36,9 @@ class EditarHistoria : AppCompatActivity() {
 
 
         val ProfileInfo = getIntent()
-        val characterName = ProfileInfo.getStringExtra("charName")
-        val characterPic = ProfileInfo.getStringExtra("charPic")
+        character = ProfileInfo.getSerializableExtra("character") as Personagem
+        val characterName = character.getNome()
+        val characterPic = character.getProfilePic()
 
 
 
@@ -112,10 +114,11 @@ class EditarHistoria : AppCompatActivity() {
 
         salvaDetalhes.setOnClickListener{
             //Adicionando a conta ao banco de dados com atuais 0 personagens
-            val  new_caracteristicas = Personagem(idadePersonagem.text.toString().toInt(), sexoPersonagem.selectedItem.toString(), nacionalidade.text.toString(),
+            character.setHistoria(idadePersonagem.text.toString().toInt(), sexoPersonagem.selectedItem.toString(), nacionalidade.text.toString(),
                                                      vicio.selectedItem.toString().replace("Vício: ", ""), virtude.selectedItem.toString().replace("Virtude: ", ""),
                                                      formado.selectedItem.toString(), casa.selectedItem.toString(),  ocupacao.selectedItem.toString(), historia.text.toString())
-            val caracteristicas = HashMap<String, Any>()
+
+           /* val caracteristicas = HashMap<String, Any>()
             caracteristicas.put("idade", idadePersonagem.text.toString().toInt())
             caracteristicas.put("sexo", sexoPersonagem.selectedItem.toString())
             caracteristicas.put("nacionalidade", nacionalidade.text.toString())
@@ -124,16 +127,25 @@ class EditarHistoria : AppCompatActivity() {
             caracteristicas.put("formado", formado.selectedItem.toString())
             caracteristicas.put("casa", casa.selectedItem.toString())
             caracteristicas.put("ocupacao", ocupacao.selectedItem.toString())
-            caracteristicas.put("história",historia.text.toString())
+            caracteristicas.put("história",historia.text.toString())*/
             db.collection("characters").document(nomePersonagem.text.toString())
-                    .set(new_caracteristicas, SetOptions.merge())
+                    .set(character, SetOptions.merge())
                     .addOnSuccessListener {
                         Toast.makeText(this@EditarHistoria, "Características salvas", Toast.LENGTH_SHORT).show()
-                        val gotoCriarPersonagemPersonagem = Intent(this, CriarPersonagem::class.java)
-                        gotoCriarPersonagemPersonagem.putExtra("CRIAR_TYPE", 1)
-                        startActivity(gotoCriarPersonagemPersonagem)
+                        if (character.forca == 0) {
+                            val gotoCriarPersonagem = Intent(this, CriarPersonagem::class.java)
+                            gotoCriarPersonagem.putExtra("CRIAR_TYPE", 1)
+                            gotoCriarPersonagem.putExtra("character", character)
+                            startActivity(gotoCriarPersonagem)
+                        }
+                        else{
+                            val goToPersonagens = Intent (this, Personagens::class.java)
+                            goToPersonagens.putExtra("character" , character)
+                            startActivity(goToPersonagens)
+                        }
                     }
-                    .addOnFailureListener { e -> Log.w("DatabaseAdd", "Error writing document", e) }
+                    .addOnFailureListener { e -> Log.w("DatabaseAdd", "Error writing document", e)
+                    }
         }
 
 

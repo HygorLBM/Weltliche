@@ -13,5 +13,7 @@ class Personagens : AppCompatActivity() {
         getSupportActionBar()!!.hide()
 
 
+
+
     }
 }

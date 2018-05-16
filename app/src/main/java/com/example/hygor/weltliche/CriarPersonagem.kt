@@ -22,7 +22,10 @@ import java.io.ByteArrayOutputStream
 import com.google.firebase.storage.StorageReference
 import android.provider.SyncStateContract.Helpers.update
 import android.support.v4.app.FragmentActivity
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import org.w3c.dom.Text
@@ -33,22 +36,27 @@ class CriarPersonagem : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     var ready: Boolean = false;
-    var loadedPicture: Bitmap? = null
+    lateinit var loadedPicture: Bitmap
     lateinit var storage: FirebaseStorage
-    lateinit var initialPicture: Bitmap
+    var initialPicture: Boolean? = null
     lateinit var editaHistoria: Button
     lateinit var explicaHistoria: TextView
     lateinit var editaAtributo: Button
     lateinit var explicaAtributo: TextView
     lateinit var editaMagias: Button
     lateinit var explicaMagias: TextView
+    lateinit var wam_characterSkill: EditText
     lateinit var wam_characterPic: ImageView
     lateinit var wam_characterName: EditText
     lateinit var profileURL: String
+    lateinit var newCharacter: Personagem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_personagem)
+
+        val InfoTela = getIntent()
+        val tipoTela = InfoTela.getIntExtra("CRIAR_TYPE", 0)
 
         //Adicionando instancia do Firebase
         mAuth = FirebaseAuth.getInstance()
@@ -70,7 +78,7 @@ class CriarPersonagem : AppCompatActivity() {
 
         //Adicionando elementos da interface
         wam_characterName = findViewById<EditText>(R.id.Nickname)
-        val wam_characterSkill = findViewById<EditText>(R.id.PersonalSkill)
+        wam_characterSkill = findViewById<EditText>(R.id.PersonalSkill)
         wam_characterPic= findViewById<ImageView>(R.id.ProfileImage)
         val salvaPersonagem = findViewById<Button>(R.id.SalvarPersonagem)
          editaHistoria = findViewById<Button>(R.id.EditarHistória)
@@ -80,15 +88,18 @@ class CriarPersonagem : AppCompatActivity() {
          explicaAtributo = findViewById<TextView>(R.id.ExplicarAtributos)
          explicaMagias = findViewById<TextView>(R.id.ExplicarMagias)
 
+
+
         //Pegando a imagem inicial (sem mudança)
-        initialPicture = (wam_characterPic.getDrawable() as BitmapDrawable).getBitmap()
+        initialPicture = true
 
 
         //Tratando criação do personagem
         salvaPersonagem.setOnClickListener{
+            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_LONG).show()
             val charName = wam_characterName.text.toString()
             val charSkill = wam_characterSkill.text.toString()
-            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_LONG).show()
+
 
             if(!ready){
                 Toast.makeText(this@CriarPersonagem, " Atenção: preencha nome, skill e imagem", Toast.LENGTH_SHORT).show()
@@ -107,7 +118,7 @@ class CriarPersonagem : AppCompatActivity() {
                         //Personagem não existe, então upadte não foi possível
                         .addOnFailureListener {
 
-                            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@CriarPersonagem, "Salvando... aguarde!", Toast.LENGTH_LONG).show()
                             // Criando referencia para a foto do personagem no Storage
                             val storageRef = storage.reference
                             val profilepicRef = storageRef.child("characters/" + charName + "/profile")
@@ -125,18 +136,14 @@ class CriarPersonagem : AppCompatActivity() {
                                 profileURL = taskSnapshot.downloadUrl.toString()
                                 val user = mAuth!!.currentUser
                                 //Adicionando o personagem ao banco de dados
-                                val new_character = Personagem(user!!.uid, UUID.randomUUID().toString(),charName, charSkill, profileURL, false )
-                               /* val new_char = HashMap<String, Any>()
-                                new_char.put("uid", user!!.uid)
-                                new_char.put("cid", UUID.randomUUID().toString())
-                                new_char.put("nome", charName)
-                                new_char.put("skill", charSkill)
-                                new_char.put("profilePic", profileURL)
-                                new_char.put("npc", false)*/
+                                newCharacter = Personagem(user!!.uid, UUID.randomUUID().toString(),charName, charSkill, profileURL, false )
                                 db.collection("characters").document(charName)
-                                        .set(new_character)
+                                        .set(newCharacter)
                                         .addOnSuccessListener {
                                             Toast.makeText(this@CriarPersonagem, " Personagem criado", Toast.LENGTH_SHORT).show()
+                                            wam_characterName.isEnabled = false
+                                            wam_characterSkill.isEnabled = false
+                                            wam_characterPic.isClickable = false
                                             salvaPersonagem.visibility = View.INVISIBLE
                                             editaHistoria.visibility = View.VISIBLE
                                             editaAtributo.visibility = View.VISIBLE
@@ -161,11 +168,71 @@ class CriarPersonagem : AppCompatActivity() {
             }
         }
 
+
+
+
+        // Tratando quando a activity chega de ter salvado o personagem e seus atributos
+        if ( tipoTela != 0){
+            newCharacter = InfoTela.getSerializableExtra("character") as Personagem
+            wam_characterName.setText(newCharacter.getNome())
+            wam_characterName.isEnabled = false
+            wam_characterSkill.setText(newCharacter.getSkill())
+            wam_characterSkill.isEnabled = false
+            Glide.with(this).load(newCharacter.getProfilePic()).into(wam_characterPic)
+            wam_characterPic.isClickable = false
+            salvaPersonagem.visibility = View.INVISIBLE
+            editaHistoria.visibility = View.VISIBLE
+            editaAtributo.visibility = View.VISIBLE
+            editaMagias.visibility = View.VISIBLE
+            explicaHistoria.visibility = View.VISIBLE
+            explicaAtributo.visibility = View.VISIBLE
+            explicaMagias.visibility = View.VISIBLE
+
+            if (tipoTela == 1){
+                editaHistoria.setBackgroundResource(R.drawable.notavailable)
+            }
+            else if (tipoTela == 2){
+                editaAtributo.setBackgroundResource(R.drawable.notavailable)
+            }
+
+        }
+
+        //Verifica se todos campos foram preenchidos
+        wam_characterName.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                verifyComplete()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+        wam_characterSkill.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                verifyComplete()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+
+
+
         editaHistoria.setOnClickListener {
             val goToEditarHistoria = Intent (this, EditarHistoria::class.java)
-            goToEditarHistoria.putExtra("charName", wam_characterName.text.toString())
-            goToEditarHistoria.putExtra("charPic", profileURL)
+            goToEditarHistoria.putExtra("character" , newCharacter)
             startActivity(goToEditarHistoria)
+        }
+
+        editaAtributo.setOnClickListener {
+            val goToEditarAtributos = Intent (this, EditarAtributos::class.java)
+            goToEditarAtributos.putExtra("character" , newCharacter)
+            startActivity(goToEditarAtributos)
         }
 
 
@@ -173,8 +240,9 @@ class CriarPersonagem : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         val bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data)
-        loadedPicture = bitmap
+        loadedPicture = bitmap as Bitmap
         wam_characterPic.setImageBitmap(loadedPicture)
+        initialPicture = false
         verifyComplete()
     }
 
@@ -184,12 +252,12 @@ class CriarPersonagem : AppCompatActivity() {
     }
 
      fun verifyComplete() {
-        val charName = findViewById<EditText>(R.id.Nickname).text.toString()
-        val charSkill = findViewById<EditText>(R.id.PersonalSkill).text.toString()
+        val charName = wam_characterName.text.toString()
+        val charSkill = wam_characterSkill.text.toString()
         val salvaPersonagem = findViewById<Button>(R.id.SalvarPersonagem)
 
         //Pronto pra salvar personagem
-        if( (!charName.isEmpty()) && (!charSkill.isEmpty()) && (!loadedPicture!!.equals(initialPicture))){
+        if( (!charName.isEmpty()) && (!charSkill.isEmpty()) && (initialPicture == false)){
             salvaPersonagem.setBackgroundResource(R.drawable.roundedbutton)
             ready = true;
         }
